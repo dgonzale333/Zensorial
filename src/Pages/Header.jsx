@@ -69,10 +69,13 @@ const ZensorialHeader = () => {
   }
 
   return (
-    <header className="relative min-h-screen overflow-hidden bg-gradient-to-br from-amber-950 via-yellow-900 to-amber-900">
+    <header
+      id="zensorial-header"
+      className="relative min-h-screen overflow-hidden bg-gradient-to-br from-amber-950 via-yellow-900 to-amber-900 dark:from-gray-900 dark:via-gray-800 dark:to-amber-900"
+    >
       {/* Fondo con textura de café */}
       <motion.div
-        className="absolute inset-0 bg-gradient-to-br from-amber-900/40 via-yellow-800/30 to-amber-800/50"
+        className="absolute inset-0 bg-gradient-to-br from-amber-900/40 via-yellow-800/30 to-amber-800/50 dark:from-gray-800/60 dark:via-amber-900/40 dark:to-gray-900/50"
         animate={{
           background: [
             "linear-gradient(45deg, rgba(120, 53, 15, 0.4), rgba(146, 64, 14, 0.3), rgba(133, 77, 14, 0.5))",
@@ -85,7 +88,7 @@ const ZensorialHeader = () => {
 
       {/* Efecto de vapor de café */}
       <motion.div
-        className="absolute inset-0 bg-gradient-to-t from-transparent via-stone-100/5 to-stone-50/10"
+        className="absolute inset-0 bg-gradient-to-t from-transparent via-stone-100/5 to-stone-50/10 dark:via-gray-100/3 dark:to-gray-50/5"
         animate={{
           opacity: [0.3, 0.6, 0.3],
           scale: [1, 1.02, 1],
@@ -120,9 +123,9 @@ const ZensorialHeader = () => {
               ease: "easeInOut",
             }}
           >
-            <div className="w-3 h-4 bg-amber-800 rounded-full relative">
-              <div className="absolute inset-0 bg-gradient-to-br from-amber-700 to-amber-900 rounded-full" />
-              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-0.5 h-2 bg-amber-900 rounded-full" />
+            <div className="w-3 h-4 bg-amber-800 dark:bg-amber-700 rounded-full relative">
+              <div className="absolute inset-0 bg-gradient-to-br from-amber-700 to-amber-900 dark:from-amber-600 dark:to-amber-800 rounded-full" />
+              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-0.5 h-2 bg-amber-900 dark:bg-amber-800 rounded-full" />
             </div>
           </motion.div>
         ))}
@@ -144,7 +147,7 @@ const ZensorialHeader = () => {
               ease: "easeOut",
             }}
           >
-            <Droplets className="w-2 h-2 text-stone-200/40" />
+            <Droplets className="w-2 h-2 text-stone-200/40 dark:text-gray-300/30" />
           </motion.div>
         ))}
 
@@ -169,16 +172,16 @@ const ZensorialHeader = () => {
               ease: "easeInOut",
             }}
           >
-            {i % 3 === 0 && <Coffee className="w-3 h-3 text-amber-600/50" />}
-            {i % 3 === 1 && <Sparkles className="w-2 h-2 text-yellow-600/40" />}
-            {i % 3 === 2 && <Star className="w-2.5 h-2.5 text-amber-500/45" />}
+            {i % 3 === 0 && <Coffee className="w-3 h-3 text-amber-600/50 dark:text-amber-500/40" />}
+            {i % 3 === 1 && <Sparkles className="w-2 h-2 text-yellow-600/40 dark:text-yellow-500/30" />}
+            {i % 3 === 2 && <Star className="w-2.5 h-2.5 text-amber-500/45 dark:text-amber-400/35" />}
           </motion.div>
         ))}
       </motion.div>
 
       {/* Main content container */}
       <motion.div
-        className="relative z-10 flex flex-col items-center justify-center min-h-screen px-4 text-center"
+        className="relative z-10 flex flex-col items-center justify-center min-h-screen px-4 text-center pt-16"
         style={{ y: springY1, opacity: springOpacity }}
       >
         {/* Subtitle con tema de café */}
@@ -188,7 +191,7 @@ const ZensorialHeader = () => {
           transition={{ duration: 1, delay: 0.3 }}
           className="mb-6"
         >
-          <span className="inline-flex items-center gap-2 px-4 py-2 bg-amber-900/20 backdrop-blur-sm rounded-full text-stone-100 text-sm font-medium border border-amber-700/30">
+          <span className="inline-flex items-center gap-2 px-4 py-2 bg-amber-900/20 dark:bg-gray-800/40 backdrop-blur-sm rounded-full text-stone-100 dark:text-gray-200 text-sm font-medium border border-amber-700/30 dark:border-gray-600/30">
             <Coffee className="w-4 h-4" />
             Experiencia Premium
             <Coffee className="w-4 h-4" />
@@ -197,7 +200,7 @@ const ZensorialHeader = () => {
 
         {/* Main title con colores de café */}
         <motion.h1
-          className="text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-stone-100 mb-8 leading-tight"
+          className="text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-stone-100 dark:text-gray-100 mb-8 leading-tight"
           initial={{ opacity: 0, scale: 0.8, rotateX: -15 }}
           animate={{ opacity: 1, scale: 1, rotateX: 0 }}
           transition={{
@@ -224,7 +227,7 @@ const ZensorialHeader = () => {
           >
             {/* Efecto de brillo muy sutil */}
             <motion.div
-              className="absolute inset-0 bg-gradient-to-r from-amber-200/20 via-yellow-100/15 to-stone-200/20 blur-lg"
+              className="absolute inset-0 bg-gradient-to-r from-amber-200/20 via-yellow-100/15 to-stone-200/20 dark:from-amber-300/15 dark:via-yellow-200/10 dark:to-gray-200/15 blur-lg"
               animate={{
                 opacity: [0.1, 0.2, 0.1],
               }}
@@ -237,7 +240,7 @@ const ZensorialHeader = () => {
 
             {/* Texto simple con gradiente sutil */}
             <motion.span
-              className="relative z-10 bg-gradient-to-r from-stone-100 via-amber-100 to-yellow-200 bg-clip-text text-transparent font-extrabold"
+              className="relative z-10 bg-gradient-to-r from-stone-100 via-amber-100 to-yellow-200 dark:from-gray-100 dark:via-amber-200 dark:to-yellow-300 bg-clip-text text-transparent font-extrabold"
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{
@@ -282,7 +285,7 @@ const ZensorialHeader = () => {
                   ease: "easeOut",
                 }}
               >
-                <div className="w-1 h-2 bg-stone-200/50 rounded-full" />
+                <div className="w-1 h-2 bg-stone-200/50 dark:bg-gray-300/40 rounded-full" />
               </motion.div>
             ))}
           </motion.div>
@@ -299,12 +302,12 @@ const ZensorialHeader = () => {
               ease: "easeInOut",
             }}
           >
-            <Coffee className="w-16 h-16 md:w-20 md:h-20 text-amber-300" />
+            <Coffee className="w-16 h-16 md:w-20 md:h-20 text-amber-300 dark:text-amber-400" />
           </motion.div>
 
           {/* Resplandor cálido de café */}
           <motion.div
-            className="absolute inset-0 bg-amber-600/30 rounded-full blur-xl"
+            className="absolute inset-0 bg-amber-600/30 dark:bg-amber-500/20 rounded-full blur-xl"
             animate={{
               scale: [1, 1.2, 1],
               opacity: [0.3, 0.6, 0.3],
@@ -330,13 +333,13 @@ const ZensorialHeader = () => {
                 behavior: "smooth",
               })
             }}
-            className="group relative px-8 py-4 bg-gradient-to-r from-amber-700 to-amber-600 text-stone-100 font-semibold rounded-full shadow-2xl overflow-hidden border border-amber-500/30"
+            className="group relative px-8 py-4 bg-gradient-to-r from-amber-700 to-amber-600 dark:from-amber-600 dark:to-amber-500 text-stone-100 dark:text-gray-100 font-semibold rounded-full shadow-2xl overflow-hidden border border-amber-500/30 dark:border-amber-400/30"
             whileHover={{ scale: 1.05, y: -2 }}
             whileTap={{ scale: 0.95 }}
             transition={{ type: "spring", stiffness: 400, damping: 17 }}
           >
             <motion.div
-              className="absolute inset-0 bg-gradient-to-r from-amber-600 to-yellow-700 opacity-0 group-hover:opacity-100"
+              className="absolute inset-0 bg-gradient-to-r from-amber-600 to-yellow-700 dark:from-amber-500 dark:to-yellow-600 opacity-0 group-hover:opacity-100"
               transition={{ duration: 0.3 }}
             />
             <span className="relative z-10 flex items-center gap-2">
@@ -347,30 +350,10 @@ const ZensorialHeader = () => {
             </span>
           </motion.button>
         </motion.div>
-
-        {/* Scroll indicator */}
-        <motion.div
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 2.5 }}
-        >
-          <motion.div
-            className="w-6 h-10 border-2 border-stone-200/50 rounded-full flex justify-center"
-            animate={{ opacity: [0.5, 1, 0.5] }}
-            transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
-          >
-            <motion.div
-              className="w-1 h-3 bg-stone-200/70 rounded-full mt-2"
-              animate={{ y: [0, 12, 0] }}
-              transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
-            />
-          </motion.div>
-        </motion.div>
       </motion.div>
 
       {/* Bottom gradient overlay */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-amber-950/40 to-transparent" />
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-amber-950/40 dark:from-gray-900/60 to-transparent" />
     </header>
   )
 }
