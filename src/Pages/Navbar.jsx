@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Menu, X, Sun, Moon, Search, ArrowUp, Coffee } from "lucide-react"
-import { useTheme } from "./theme-provider"
+import { useTheme } from "./ThemeProvider"
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false)
@@ -11,6 +11,7 @@ const Navbar = () => {
   const [showScrollTop, setShowScrollTop] = useState(false)
   const [searchQuery, setSearchQuery] = useState("")
   const [showSearch, setShowSearch] = useState(false)
+  const [scrollY, setScrollY] = useState(0)
   const { theme, toggleTheme } = useTheme()
 
   const navItems = [
@@ -20,11 +21,14 @@ const Navbar = () => {
     { id: "nosotros", label: "Nosotros", href: "#about-us-section" },
   ]
 
-  // Detectar sección activa
+  // Detectar sección activa y scroll position
   useEffect(() => {
     const handleScroll = () => {
       const sections = ["home", "coffee-details-section", "methods-details-section", "about-us-section"]
       const scrollPosition = window.scrollY + 100
+
+      // Actualizar posición del scroll
+      setScrollY(window.scrollY)
 
       // Mostrar botón scroll to top
       setShowScrollTop(window.scrollY > 500)
@@ -45,6 +49,32 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
+  // Calcular transparencia basada en el scroll
+  const getNavbarOpacity = () => {
+    const maxScroll = 300 // Distancia máxima para alcanzar transparencia completa
+    const minOpacity = 0.7 // Transparencia mínima
+    const maxOpacity = 0.95 // Transparencia máxima (inicial)
+    
+    if (scrollY <= 0) return maxOpacity
+    if (scrollY >= maxScroll) return minOpacity
+    
+    const scrollProgress = scrollY / maxScroll
+    return maxOpacity - (scrollProgress * (maxOpacity - minOpacity))
+  }
+
+  // Calcular blur basado en el scroll
+  const getBackdropBlur = () => {
+    const maxScroll = 300
+    const minBlur = 8 // blur mínimo
+    const maxBlur = 16 // blur máximo
+    
+    if (scrollY <= 0) return maxBlur
+    if (scrollY >= maxScroll) return minBlur
+    
+    const scrollProgress = scrollY / maxScroll
+    return maxBlur - (scrollProgress * (maxBlur - minBlur))
+  }
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" })
   }
@@ -62,7 +92,14 @@ const Navbar = () => {
     <>
       {/* Navbar */}
       <motion.nav
-        className="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-amber-200/50 dark:border-gray-700/50"
+        className="fixed top-0 left-0 right-0 z-50 border-b border-amber-200/50 dark:border-gray-700/50 transition-all duration-300"
+        style={{
+          backgroundColor: theme === "light" 
+            ? `rgba(255, 255, 255, ${getNavbarOpacity()})` 
+            : `rgba(17, 24, 39, ${getNavbarOpacity()})`,
+          backdropFilter: `blur(${getBackdropBlur()}px)`,
+          WebkitBackdropFilter: `blur(${getBackdropBlur()}px)`,
+        }}
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.5 }}
@@ -160,7 +197,7 @@ const Navbar = () => {
                     placeholder="Buscar cafés, métodos..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className="w-full pl-10 pr-4 py-2 bg-white dark:bg-gray-800 border border-amber-200 dark:border-gray-600 rounded-full focus:outline-none focus:ring-2 focus:ring-amber-500 dark:focus:ring-amber-400 text-gray-900 dark:text-gray-100"
+                    className="w-full pl-10 pr-4 py-2 bg-white/90 dark:bg-gray-800/90 border border-amber-200 dark:border-gray-600 rounded-full focus:outline-none focus:ring-2 focus:ring-amber-500 dark:focus:ring-amber-400 text-gray-900 dark:text-gray-100 backdrop-blur-sm"
                   />
                 </div>
               </motion.div>
@@ -172,7 +209,14 @@ const Navbar = () => {
         <AnimatePresence>
           {isOpen && (
             <motion.div
-              className="md:hidden bg-white dark:bg-gray-900 border-t border-amber-200/50 dark:border-gray-700/50"
+              className="md:hidden border-t border-amber-200/50 dark:border-gray-700/50"
+              style={{
+                backgroundColor: theme === "light" 
+                  ? `rgba(255, 255, 255, ${Math.max(getNavbarOpacity(), 0.9)})` 
+                  : `rgba(17, 24, 39, ${Math.max(getNavbarOpacity(), 0.9)})`,
+                backdropFilter: `blur(${getBackdropBlur()}px)`,
+                WebkitBackdropFilter: `blur(${getBackdropBlur()}px)`,
+              }}
               initial={{ height: 0, opacity: 0 }}
               animate={{ height: "auto", opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
@@ -185,8 +229,8 @@ const Navbar = () => {
                     onClick={() => handleNavClick(item.href, item.id)}
                     className={`block w-full text-left px-4 py-3 rounded-lg font-medium transition-colors ${
                       activeSection === item.id
-                        ? "bg-amber-100 dark:bg-amber-900/30 text-amber-600 dark:text-amber-400"
-                        : "text-gray-700 dark:text-gray-300 hover:bg-amber-50 dark:hover:bg-gray-800"
+                        ? "bg-amber-100/80 dark:bg-amber-900/40 text-amber-600 dark:text-amber-400"
+                        : "text-gray-700 dark:text-gray-300 hover:bg-amber-50/80 dark:hover:bg-gray-800/80"
                     }`}
                     whileHover={{ x: 5 }}
                     whileTap={{ scale: 0.95 }}

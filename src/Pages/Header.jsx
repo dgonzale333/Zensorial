@@ -4,6 +4,8 @@ import { useEffect, useState } from "react"
 import { motion, useScroll, useTransform, useSpring } from "framer-motion"
 import { Coffee, Sparkles, Star, Droplets } from "lucide-react"
 
+
+
 const ZensorialHeader = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const { scrollY } = useScroll()
@@ -69,22 +71,24 @@ const ZensorialHeader = () => {
   }
 
   return (
-    <header
-      id="zensorial-header"
-      className="relative min-h-screen overflow-hidden bg-gradient-to-br from-amber-950 via-yellow-900 to-amber-900 dark:from-gray-900 dark:via-gray-800 dark:to-amber-900"
-    >
-      {/* Fondo con textura de café */}
-      <motion.div
-        className="absolute inset-0 bg-gradient-to-br from-amber-900/40 via-yellow-800/30 to-amber-800/50 dark:from-gray-800/60 dark:via-amber-900/40 dark:to-gray-900/50"
-        animate={{
-          background: [
-            "linear-gradient(45deg, rgba(120, 53, 15, 0.4), rgba(146, 64, 14, 0.3), rgba(133, 77, 14, 0.5))",
-            "linear-gradient(135deg, rgba(146, 64, 14, 0.5), rgba(120, 53, 15, 0.3), rgba(161, 98, 7, 0.4))",
-            "linear-gradient(225deg, rgba(133, 77, 14, 0.4), rgba(146, 64, 14, 0.4), rgba(120, 53, 15, 0.5))",
-          ],
-        }}
-        transition={{ duration: 10, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
-      />
+    <>
+      
+      <header
+        id="zensorial-header"
+        className="relative min-h-screen overflow-hidden bg-gradient-to-br from-amber-950 via-yellow-900 to-amber-900 dark:from-gray-900 dark:via-gray-800 dark:to-amber-900"
+      >
+        {/* Fondo con textura de café */}
+        <motion.div
+          className="absolute inset-0 bg-gradient-to-br from-amber-900/40 via-yellow-800/30 to-amber-800/50 dark:from-gray-800/60 dark:via-amber-900/40 dark:to-gray-900/50"
+          animate={{
+            background: [
+              "linear-gradient(45deg, rgba(120, 53, 15, 0.4), rgba(146, 64, 14, 0.3), rgba(133, 77, 14, 0.5))",
+              "linear-gradient(135deg, rgba(146, 64, 14, 0.5), rgba(120, 53, 15, 0.3), rgba(161, 98, 7, 0.4))",
+              "linear-gradient(225deg, rgba(133, 77, 14, 0.4), rgba(146, 64, 14, 0.4), rgba(120, 53, 15, 0.5))",
+            ],
+          }}
+          transition={{ duration: 10, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
+        />
 
       {/* Efecto de vapor de café */}
       <motion.div
@@ -355,6 +359,7 @@ const ZensorialHeader = () => {
       {/* Bottom gradient overlay */}
       <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-amber-950/40 dark:from-gray-900/60 to-transparent" />
     </header>
+    </>
   )
 }
 

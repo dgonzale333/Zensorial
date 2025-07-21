@@ -1,5 +1,6 @@
 @import 'tailwindcss';
 
+/* ======= Variables Base ======= */
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -47,39 +48,51 @@
   }
 }
 
+/* ======= Estilos Base y Body ======= */
 @layer base {
   * {
-    @apply border-border;
+    border-color: hsl(var(--border));
   }
+
   body {
-    @apply bg-background text-foreground;
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
     transition: background-color 0.3s ease, color 0.3s ease;
   }
 }
 
-/* Smooth scrolling */
+/* ======= Scroll Suave ======= */
 html {
   scroll-behavior: smooth;
 }
 
-/* Custom scrollbar */
+/* ======= Scrollbar Personalizado ======= */
 ::-webkit-scrollbar {
   width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  @apply bg-gray-100 dark:bg-gray-800;
+  background-color: theme('colors.gray.100');
+}
+.dark ::-webkit-scrollbar-track {
+  background-color: theme('colors.gray.800');
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-amber-600 dark:bg-amber-500 rounded-full;
+  background-color: #d97706; /* Tailwind bg-amber-600 */
+  border-radius: 9999px;     /* Tailwind rounded-full */
 }
-
+.dark ::-webkit-scrollbar-thumb {
+  background-color: #f59e42; /* Tailwind bg-amber-500 */
+}
 ::-webkit-scrollbar-thumb:hover {
-  @apply bg-amber-700 dark:bg-amber-400;
+  background-color: #b45309; /* Tailwind bg-amber-700 */
+}
+.dark ::-webkit-scrollbar-thumb:hover {
+  background-color: #fbbf24; /* Tailwind bg-amber-400 */
 }
 
-/* Loading animations */
+/* ======= Shimmer Animation ======= */
 @keyframes shimmer {
   0% {
     background-position: -200px 0;
@@ -100,21 +113,27 @@ html {
   background-size: 200px 100%;
 }
 
-/* Focus styles for accessibility */
+/* ======= Focus Visible ======= */
 .focus-visible:focus {
-  @apply outline-none ring-2 ring-amber-500 ring-offset-2 dark:ring-amber-400 dark:ring-offset-gray-900;
+  outline: none;
+  box-shadow: 0 0 0 2px #f59e42, 0 0 0 4px #fff; /* ring-2 ring-amber-500 ring-offset-2 */
+}
+.dark .focus-visible:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #fbbf24, 0 0 0 4px #1a202c; /* dark:ring-amber-400 dark:ring-offset-gray-900 */
 }
 
-/* Text selection */
+/* ======= Selección de Texto ======= */
 ::selection {
-  @apply bg-amber-200 text-amber-900;
+  background-color: #fde68a; /* Tailwind bg-amber-200 */
+  color: #78350f;            /* Tailwind text-amber-900 */
 }
-
 .dark ::selection {
-  @apply bg-amber-800 text-amber-100;
+  background-color: #92400e; /* Tailwind bg-amber-800 */
+  color: #fef3c7;            /* Tailwind text-amber-100 */
 }
 
-/* Reduced motion for accessibility */
+/* ======= Motion Reducido (Accesibilidad) ======= */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -126,22 +145,23 @@ html {
   }
 }
 
-/* High contrast mode support */
+/* ======= Alto Contraste (Accesibilidad) ======= */
 @media (prefers-contrast: high) {
   .bg-gradient-to-r,
   .bg-gradient-to-br,
   .bg-gradient-to-t {
-    @apply bg-none;
+    background-image: none !important;
   }
 }
 
-/* Print styles */
+/* ======= Estilos de Impresión ======= */
 @media print {
   .no-print {
     display: none !important;
   }
 
   body {
-    @apply text-black bg-white;
+    color: #000;
+    background-color: #fff;
   }
 }
