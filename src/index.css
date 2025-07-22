@@ -24,36 +24,12 @@
     --ring: 222.2 84% 4.9%;
     --radius: 0.5rem;
   }
-
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-  }
 }
 
-/* ======= Estilos Base y Body ======= */
 @layer base {
   * {
     border-color: hsl(var(--border));
   }
-
   body {
     background-color: hsl(var(--background));
     color: hsl(var(--foreground));
@@ -61,38 +37,30 @@
   }
 }
 
-/* ======= Scroll Suave ======= */
+/* Smooth scrolling */
 html {
   scroll-behavior: smooth;
 }
 
-/* ======= Scrollbar Personalizado ======= */
+/* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background-color: theme('colors.gray.100');
-}
-.dark ::-webkit-scrollbar-track {
-  background-color: theme('colors.gray.800');
+  background-color: #fef3c7; /* amber-100 */
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #d97706; /* Tailwind bg-amber-600 */
-  border-radius: 9999px;     /* Tailwind rounded-full */
-}
-.dark ::-webkit-scrollbar-thumb {
-  background-color: #f59e42; /* Tailwind bg-amber-500 */
-}
-::-webkit-scrollbar-thumb:hover {
-  background-color: #b45309; /* Tailwind bg-amber-700 */
-}
-.dark ::-webkit-scrollbar-thumb:hover {
-  background-color: #fbbf24; /* Tailwind bg-amber-400 */
+  background-color: #b45309; /* amber-700 */
+  border-radius: 9999px;
 }
 
-/* ======= Shimmer Animation ======= */
+::-webkit-scrollbar-thumb:hover {
+  background-color: #92400e; /* amber-800 */
+}
+
+/* Loading animations */
 @keyframes shimmer {
   0% {
     background-position: -200px 0;
@@ -108,32 +76,19 @@ html {
   animation: shimmer 1.5s infinite;
 }
 
-.dark .shimmer {
-  background: linear-gradient(90deg, #374151 25%, #4b5563 50%, #374151 75%);
-  background-size: 200px 100%;
-}
-
-/* ======= Focus Visible ======= */
+/* Focus styles for accessibility */
 .focus-visible:focus {
   outline: none;
-  box-shadow: 0 0 0 2px #f59e42, 0 0 0 4px #fff; /* ring-2 ring-amber-500 ring-offset-2 */
-}
-.dark .focus-visible:focus {
-  outline: none;
-  box-shadow: 0 0 0 2px #fbbf24, 0 0 0 4px #1a202c; /* dark:ring-amber-400 dark:ring-offset-gray-900 */
+  box-shadow: 0 0 0 2px #d97706, 0 0 0 4px #fff; /* ring-2 amber-600 with ring-offset-2 */
 }
 
-/* ======= Selección de Texto ======= */
+/* Text selection */
 ::selection {
-  background-color: #fde68a; /* Tailwind bg-amber-200 */
-  color: #78350f;            /* Tailwind text-amber-900 */
-}
-.dark ::selection {
-  background-color: #92400e; /* Tailwind bg-amber-800 */
-  color: #fef3c7;            /* Tailwind text-amber-100 */
+  background-color: #fde68a; /* amber-200 */
+  color: #78350f; /* amber-900 */
 }
 
-/* ======= Motion Reducido (Accesibilidad) ======= */
+/* Reduced motion for accessibility */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -145,16 +100,16 @@ html {
   }
 }
 
-/* ======= Alto Contraste (Accesibilidad) ======= */
+/* High contrast mode support */
 @media (prefers-contrast: high) {
   .bg-gradient-to-r,
   .bg-gradient-to-br,
   .bg-gradient-to-t {
-    background-image: none !important;
+    background: none !important;
   }
 }
 
-/* ======= Estilos de Impresión ======= */
+/* Print styles */
 @media print {
   .no-print {
     display: none !important;

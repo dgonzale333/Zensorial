@@ -1,8 +1,25 @@
 "use client"
 
 import { useState } from "react"
-import { motion, AnimatePresence } from "framer-motion"
-import { ChevronLeft, ChevronRight, Play, Pause, Heart, MessageCircle, Share, Volume2, VolumeX } from "lucide-react"
+import { motion } from "framer-motion"
+import {
+  ChevronDown,
+  Coffee,
+  Utensils,
+  Users,
+  ArrowRight,
+  ChevronLeft,
+  ChevronRight,
+  Play,
+  Pause,
+  Heart,
+  MessageCircle,
+  Share,
+  Volume2,
+  VolumeX,
+} from "lucide-react"
+
+// Importaciones de imágenes y videos
 import imgCafe from "../assets/Img/WhatsApp Image 2025-07-19 at 1.31.52 PM.jpeg"
 import imgCafe2 from "../assets/Img/WhatsApp Image 2025-07-19 at 1.31.53 PM (1).jpeg"
 import imgCafe3 from "../assets/Img/WhatsApp Image 2025-07-19 at 1.31.53 PM.jpeg"
@@ -22,12 +39,12 @@ import videoCafe2 from "../assets/Video/videoCafe2.mp4"
 import videoCafe3 from "../assets/Video/videoCafe3.mp4"
 
 const ContentSection = () => {
-  const [activeTab, setActiveTab] = useState("cafes")
+  const [activeSection, setActiveSection] = useState("cafes")
   const [cardSlides, setCardSlides] = useState({})
   const [playingVideos, setPlayingVideos] = useState({}) // Estado para controlar reproducción de videos
   const [mutedVideos, setMutedVideos] = useState({}) // Estado para controlar el volumen de videos
 
-  // Datos de ejemplo para los carruseles
+  // Datos de ejemplo para los carruseles con imágenes reales
   const contentData = {
     cafes: [
       {
@@ -35,9 +52,9 @@ const ContentSection = () => {
         type: "image",
         images: [
           { type: "image", src: imgCafe },
-          { type: "image", src: imgCafe13 },
-          { type: "image", src: imgCafe14 },
-          { type: "image", src: imgCafe6 }
+          { type: "image", src: imgCafe2 },
+          { type: "image", src: imgCafe3 },
+          { type: "image", src: imgCafe4 },
         ],
         title: "Procesos de Tostado",
         description: "Granos seleccionados de las mejores plantaciones",
@@ -49,9 +66,9 @@ const ContentSection = () => {
         type: "video",
         images: [
           { type: "video", src: videoCafe1 },
-          { type: "video", src: videoCafe2 },
-          { type: "video", src: videoCafe3 },
-          { type: "image", src: imgCafe3 }
+          { type: "image", src: imgCafe5 },
+          { type: "image", src: imgCafe6 },
+          { type: "image", src: imgCafe7 },
         ],
         title: "Proceso de Preparación",
         description: "El arte de preparar el café perfecto",
@@ -62,10 +79,10 @@ const ContentSection = () => {
         id: 3,
         type: "image",
         images: [
+          { type: "image", src: imgCafe8 },
           { type: "image", src: imgCafe9 },
           { type: "image", src: imgCafe10 },
           { type: "image", src: imgCafe11 },
-          { type: "image", src: imgCafe12 }
         ],
         title: "Origen de Nuestros Granos",
         description: "Directamente desde las montañas",
@@ -76,10 +93,10 @@ const ContentSection = () => {
         id: 4,
         type: "image",
         images: [
-          { type: "image", src: imgCafe2 },
-          { type: "image", src: imgCafe3 },
-          { type: "image", src: imgCafe4 },
-          { type: "image", src: imgCafe5 }
+          { type: "image", src: imgCafe12 },
+          { type: "image", src: imgCafe13 },
+          { type: "image", src: imgCafe14 },
+          { type: "image", src: imgCafe },
         ],
         title: "Espresso Perfecto",
         description: "La base de todas nuestras creaciones",
@@ -92,10 +109,10 @@ const ContentSection = () => {
         id: 5,
         type: "video",
         images: [
-          { type: "image", src: imgCafe4 },
-          { type: "image", src: imgCafe },
+          { type: "video", src: videoCafe2 },
           { type: "image", src: imgCafe2 },
-          { type: "image", src: imgCafe3 }
+          { type: "image", src: imgCafe3 },
+          { type: "image", src: imgCafe4 },
         ],
         title: "Método French Press",
         description: "Extracción completa y sabor intenso",
@@ -106,10 +123,10 @@ const ContentSection = () => {
         id: 6,
         type: "image",
         images: [
-          { type: "image", src: imgCafe },
-          { type: "image", src: imgCafe4 },
-          { type: "image", src: imgCafe3 },
-          { type: "image", src: imgCafe2 }
+          { type: "image", src: imgCafe5 },
+          { type: "image", src: imgCafe6 },
+          { type: "image", src: imgCafe7 },
+          { type: "image", src: imgCafe8 },
         ],
         title: "Pour Over V60",
         description: "Precisión y control total",
@@ -120,10 +137,10 @@ const ContentSection = () => {
         id: 7,
         type: "video",
         images: [
-          { type: "image", src: imgCafe2 },
-          { type: "image", src: imgCafe3 },
-          { type: "image", src: imgCafe4 },
-          { type: "image", src: imgCafe }
+          { type: "video", src: videoCafe3 },
+          { type: "image", src: imgCafe9 },
+          { type: "image", src: imgCafe10 },
+          { type: "image", src: imgCafe11 },
         ],
         title: "Máquina de Espresso",
         description: "Tecnología y tradición unidos",
@@ -134,10 +151,10 @@ const ContentSection = () => {
         id: 8,
         type: "image",
         images: [
-          { type: "image", src: imgCafe3 },
-          { type: "image", src: imgCafe2 },
+          { type: "image", src: imgCafe12 },
+          { type: "image", src: imgCafe13 },
+          { type: "image", src: imgCafe14 },
           { type: "image", src: imgCafe },
-          { type: "image", src: imgCafe4 }
         ],
         title: "Cold Brew",
         description: "Extracción en frío para sabores únicos",
@@ -150,10 +167,10 @@ const ContentSection = () => {
         id: 9,
         type: "image",
         images: [
-          { type: "image", src: imgCafe },
           { type: "image", src: imgCafe2 },
           { type: "image", src: imgCafe3 },
-          { type: "image", src: imgCafe4 }
+          { type: "image", src: imgCafe4 },
+          { type: "image", src: imgCafe5 },
         ],
         title: "Nuestro Equipo",
         description: "Apasionados por el café de calidad",
@@ -164,10 +181,10 @@ const ContentSection = () => {
         id: 10,
         type: "video",
         images: [
-          { type: "image", src: imgCafe2 },
-          { type: "image", src: imgCafe4 },
-          { type: "image", src: imgCafe },
-          { type: "image", src: imgCafe3 }
+          { type: "video", src: videoCafe1 },
+          { type: "image", src: imgCafe6 },
+          { type: "image", src: imgCafe7 },
+          { type: "image", src: imgCafe8 },
         ],
         title: "Proceso de Tostado",
         description: "Artesanía en cada grano",
@@ -178,10 +195,10 @@ const ContentSection = () => {
         id: 11,
         type: "image",
         images: [
-          { type: "image", src: imgCafe3 },
-          { type: "image", src: imgCafe },
-          { type: "image", src: imgCafe4 },
-          { type: "image", src: imgCafe2 }
+          { type: "image", src: imgCafe9 },
+          { type: "image", src: imgCafe10 },
+          { type: "image", src: imgCafe11 },
+          { type: "image", src: imgCafe12 },
         ],
         title: "Nuestro Espacio",
         description: "Un lugar para disfrutar y relajarse",
@@ -192,10 +209,10 @@ const ContentSection = () => {
         id: 12,
         type: "image",
         images: [
-          { type: "image", src: imgCafe4 },
+          { type: "image", src: imgCafe13 },
+          { type: "image", src: imgCafe14 },
+          { type: "image", src: imgCafe },
           { type: "image", src: imgCafe2 },
-          { type: "image", src: imgCafe3 },
-          { type: "image", src: imgCafe }
         ],
         title: "Reconocimientos",
         description: "Premiados por nuestra excelencia",
@@ -205,49 +222,73 @@ const ContentSection = () => {
     ],
   }
 
-  const tabs = [
-    { id: "cafes", label: "Nuestros Cafés", icon: "☕" },
-    { id: "metodos", label: "Métodos", icon: "⚡" },
-    { id: "nosotros", label: "Nosotros", icon: "👥" },
+  const sections = [
+    {
+      id: "cafes",
+      title: "Nuestros Cafés",
+      icon: Coffee,
+      description: "Descubre nuestra selección premium de cafés de origen único",
+      targetId: "coffee-details-section",
+    },
+    {
+      id: "metodos",
+      title: "Métodos",
+      icon: Utensils,
+      description: "Aprende las mejores técnicas de preparación de café",
+      targetId: "methods-details-section",
+    },
+    {
+      id: "nosotros",
+      title: "Nosotros",
+      icon: Users,
+      description: "Conoce nuestra historia, misión y valores",
+      targetId: "about-us-section",
+    },
   ]
 
-  // Función para obtener el índice actual de una tarjeta específica
   const getCardSlideIndex = (cardId) => {
     return cardSlides[cardId] || 0
   }
 
   // Función para cambiar al siguiente slide de una tarjeta específica
   const nextSlide = (cardId, totalImages) => {
-    setCardSlides(prev => ({
+    setCardSlides((prev) => ({
       ...prev,
-      [cardId]: (prev[cardId] || 0) + 1 >= totalImages ? 0 : (prev[cardId] || 0) + 1
+      [cardId]: (prev[cardId] || 0) + 1 >= totalImages ? 0 : (prev[cardId] || 0) + 1,
     }))
   }
 
   // Función para cambiar al slide anterior de una tarjeta específica
   const prevSlide = (cardId, totalImages) => {
-    setCardSlides(prev => ({
+    setCardSlides((prev) => ({
       ...prev,
-      [cardId]: (prev[cardId] || 0) === 0 ? totalImages - 1 : (prev[cardId] || 0) - 1
+      [cardId]: (prev[cardId] || 0) === 0 ? totalImages - 1 : (prev[cardId] || 0) - 1,
     }))
   }
 
   // Función para controlar la reproducción del video
   const toggleVideo = (cardId, slideIndex) => {
     const videoKey = `${cardId}-${slideIndex}`
-    setPlayingVideos(prev => ({
+    setPlayingVideos((prev) => ({
       ...prev,
-      [videoKey]: !prev[videoKey]
+      [videoKey]: !prev[videoKey],
     }))
   }
 
   // Función para controlar el volumen del video
   const toggleMute = (cardId, slideIndex) => {
     const videoKey = `${cardId}-${slideIndex}`
-    setMutedVideos(prev => ({
+    setMutedVideos((prev) => ({
       ...prev,
-      [videoKey]: !prev[videoKey]
+      [videoKey]: !prev[videoKey],
     }))
+  }
+
+  const handleSectionClick = (targetId) => {
+    const element = document.getElementById(targetId)
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" })
+    }
   }
 
   const InstagramCard = ({ item }) => {
@@ -255,8 +296,8 @@ const ContentSection = () => {
     const currentMedia = item.images[currentIndex]
     const videoKey = `${item.id}-${currentIndex}`
     const isVideoPlaying = playingVideos[videoKey]
-    const isVideoMuted = mutedVideos[videoKey] || false // Por defecto no está silenciado
-    
+    const isVideoMuted = mutedVideos[videoKey] || false
+
     return (
       <motion.div
         className="relative bg-white rounded-2xl shadow-xl overflow-hidden max-w-sm mx-auto"
@@ -266,12 +307,12 @@ const ContentSection = () => {
       >
         {/* Header estilo Instagram */}
         <div className="flex items-center gap-3 p-4 border-b border-gray-100">
-          <div className="w-8 h-8 bg-gradient-to-r from-amber-600 to-amber-700 rounded-full flex items-center justify-center">
+          <div className="w-8 h-8 bg-gradient-to-r from-amber-700 to-orange-700 rounded-full flex items-center justify-center">
             <span className="text-white text-sm font-bold">Z</span>
           </div>
           <div>
             <p className="font-semibold text-gray-800">zensorial_cafe</p>
-            <p className="text-xs text-gray-500">Hace 2 horas</p>
+            <p className="text-xs text-amber-600">Hace 2 horas</p>
           </div>
         </div>
 
@@ -295,7 +336,7 @@ const ContentSection = () => {
                 loop
                 playsInline
               />
-              
+
               {/* Control de play/pause para videos */}
               <div className="absolute inset-0 flex items-center justify-center">
                 <motion.button
@@ -329,11 +370,7 @@ const ContentSection = () => {
               </div>
             </div>
           ) : (
-            <img 
-              src={currentMedia.src} 
-              alt={item.title} 
-              className="w-full h-80 object-cover" 
-            />
+            <img src={currentMedia.src || "/placeholder.svg"} alt={item.title} className="w-full h-80 object-cover" />
           )}
 
           {/* Overlay para videos cuando no están reproduciendo */}
@@ -384,7 +421,7 @@ const ContentSection = () => {
             <motion.button
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
-              className="flex items-center gap-1 text-gray-700 hover:text-red-500 transition-colors"
+              className="flex items-center gap-1 text-gray-700 hover:text-red-600 transition-colors"
             >
               <Heart className="w-5 h-5" />
               <span className="text-sm font-medium">{item.likes}</span>
@@ -392,7 +429,7 @@ const ContentSection = () => {
             <motion.button
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
-              className="flex items-center gap-1 text-gray-700 hover:text-blue-500 transition-colors"
+              className="flex items-center gap-1 text-gray-700 hover:text-amber-700 transition-colors"
             >
               <MessageCircle className="w-5 h-5" />
               <span className="text-sm font-medium">{item.comments}</span>
@@ -400,15 +437,14 @@ const ContentSection = () => {
             <motion.button
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
-              className="text-gray-700 hover:text-green-500 transition-colors ml-auto"
+              className="text-gray-700 hover:text-amber-700 transition-colors ml-auto"
             >
               <Share className="w-5 h-5" />
             </motion.button>
           </div>
-
           <div>
             <h3 className="font-semibold text-gray-800 mb-1">{item.title}</h3>
-            <p className="text-gray-600 text-sm">{item.description}</p>
+            <p className="text-amber-700 text-sm">{item.description}</p>
           </div>
         </div>
       </motion.div>
@@ -416,63 +452,74 @@ const ContentSection = () => {
   }
 
   return (
-    <section id="content-section" className="min-h-screen bg-gradient-to-br from-stone-50 to-amber-50 py-16">
-      <div className="container mx-auto px-4">
-        {/* Navbar elegante */}
-        <motion.nav
-          className="mb-12"
+    <section id="content-section" className="py-16 bg-gradient-to-br from-amber-50 to-orange-50">
+      <div className="container mx-auto px-4 max-w-6xl">
+        {/* Header */}
+        <motion.div
+          className="text-center mb-12"
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <div className="flex justify-center">
-            <div className="bg-white/80 backdrop-blur-sm rounded-full p-2 shadow-lg border border-amber-200/50">
-              <div className="flex gap-2">
-                {tabs.map((tab) => (
-                  <motion.button
-                    key={tab.id}
-                    onClick={() => {
-                      if (tab.id === "cafes") {
-                        document.getElementById("coffee-details-section")?.scrollIntoView({
-                          behavior: "smooth",
-                        })
-                      } else if (tab.id === "metodos") {
-                        document.getElementById("methods-details-section")?.scrollIntoView({
-                          behavior: "smooth",
-                        })
-                      } else {
-                        setActiveTab(tab.id)
-                      }
-                    }}
-                    className={`px-6 py-3 rounded-full font-medium transition-all duration-300 flex items-center gap-2 ${
-                      activeTab === tab.id
-                        ? "bg-gradient-to-r from-amber-600 to-amber-700 text-white shadow-md"
-                        : "text-amber-800 hover:bg-amber-100/50"
-                    }`}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    <span>{tab.icon}</span>
-                    <span className="hidden sm:inline">{tab.label}</span>
-                  </motion.button>
-                ))}
-              </div>
-            </div>
-          </div>
-        </motion.nav>
+          <h2 className="text-4xl md:text-5xl font-bold text-amber-900 mb-4">Explora Zensorial</h2>
+          <p className="text-amber-700 text-lg max-w-3xl mx-auto">
+            Sumérgete en el mundo del café premium y descubre todo lo que tenemos para ofrecerte
+          </p>
+        </motion.div>
 
-        {/* Contenido de los carruseles */}
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={activeTab}
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -20 }}
-            transition={{ duration: 0.4 }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8"
-          >
-            {contentData[activeTab].map((item, index) => (
+        {/* Navigation Cards */}
+        <div className="grid md:grid-cols-3 gap-8 mb-16">
+          {sections.map((section, index) => (
+            <motion.div
+              key={section.id}
+              className="group cursor-pointer"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              viewport={{ once: true }}
+              onClick={() => handleSectionClick(section.targetId)}
+              whileHover={{ y: -10 }}
+            >
+              <div className="bg-white rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 h-full">
+                {/* Icon */}
+                <div className="w-16 h-16 bg-gradient-to-r from-amber-700 to-orange-700 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                  <section.icon className="w-8 h-8 text-white" />
+                </div>
+
+                {/* Content */}
+                <h3 className="text-2xl font-bold text-amber-900 mb-4 group-hover:text-amber-700 transition-colors">
+                  {section.title}
+                </h3>
+
+                <p className="text-amber-700 mb-6 leading-relaxed">{section.description}</p>
+
+                {/* CTA */}
+                <div className="flex items-center gap-2 text-amber-700 font-semibold group-hover:gap-4 transition-all duration-300">
+                  <span>Explorar</span>
+                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Instagram-style Cards Section */}
+        <motion.div
+          className="mb-12"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+        >
+          <div className="text-center mb-8">
+            <h3 className="text-3xl font-bold text-amber-900 mb-4">Momentos Zensorial</h3>
+            <p className="text-amber-700 text-lg">Descubre nuestro día a día a través de imágenes y videos</p>
+          </div>
+
+          {/* Contenido de los carruseles */}
+          <motion.div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+            {contentData["cafes"].map((item, index) => (
               <motion.div
                 key={item.id}
                 initial={{ opacity: 0, y: 20 }}
@@ -483,10 +530,28 @@ const ContentSection = () => {
               </motion.div>
             ))}
           </motion.div>
-        </AnimatePresence>
+        </motion.div>
+
+        {/* Scroll Indicator */}
+        <motion.div
+          className="flex justify-center mt-16"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.5 }}
+          viewport={{ once: true }}
+        >
+          <motion.div
+            className="flex flex-col items-center gap-2 text-amber-700"
+            animate={{ y: [0, 10, 0] }}
+            transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
+          >
+            <span className="text-sm font-medium">Continúa explorando</span>
+            <ChevronDown className="w-6 h-6" />
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   )
 }
 
-export default ContentSection;
+export default ContentSection

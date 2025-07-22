@@ -2,25 +2,25 @@
 
 import { useEffect, useState } from "react"
 import { motion, useScroll, useTransform, useSpring } from "framer-motion"
-import { Coffee, Sparkles, Star, Droplets } from "lucide-react"
-
-
+import { Mountain, Sunrise, Coffee, Heart, Users, Leaf } from "lucide-react"
 
 const ZensorialHeader = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const { scrollY } = useScroll()
 
-  // Smooth parallax effects
-  const y1 = useTransform(scrollY, [0, 300], [0, -50])
-  const y2 = useTransform(scrollY, [0, 300], [0, -100])
-  const opacity = useTransform(scrollY, [0, 200], [1, 0])
+  // Parallax effects inspired by coffee landscapes
+  const y1 = useTransform(scrollY, [0, 500], [0, -150])
+  const y2 = useTransform(scrollY, [0, 500], [0, -300])
+  const y3 = useTransform(scrollY, [0, 500], [0, -100])
+  const opacity = useTransform(scrollY, [0, 300], [1, 0])
+  const scale = useTransform(scrollY, [0, 300], [1, 0.8])
 
-  // Smooth spring animations
   const springY1 = useSpring(y1, { stiffness: 100, damping: 30 })
-  const springY2 = useSpring(y2, { stiffness: 100, damping: 30 })
+  const springY2 = useSpring(y2, { stiffness: 80, damping: 25 })
+  const springY3 = useSpring(y3, { stiffness: 120, damping: 35 })
   const springOpacity = useSpring(opacity, { stiffness: 100, damping: 30 })
+  const springScale = useSpring(scale, { stiffness: 100, damping: 30 })
 
-  // Mouse tracking for interactive effects
   useEffect(() => {
     const handleMouseMove = (e) => {
       setMousePosition({
@@ -33,12 +33,24 @@ const ZensorialHeader = () => {
     return () => window.removeEventListener("mousemove", handleMouseMove)
   }, [])
 
-  // Coffee bean floating animation
-  const coffeeBeanVariants = {
+  // Coffee plant growing animation
+  const coffeeGrowthVariants = {
     animate: {
-      y: [-15, -45, -15],
-      x: [-8, 12, -8],
-      rotate: [0, 360],
+      y: [-10, -30, -10],
+      scale: [1, 1.05, 1],
+      rotate: [-2, 2, -2],
+      transition: {
+        duration: 6,
+        repeat: Number.POSITIVE_INFINITY,
+        ease: "easeInOut",
+      },
+    },
+  }
+
+  // Mountain landscape animation
+  const mountainVariants = {
+    animate: {
+      y: [-5, 5, -5],
       transition: {
         duration: 8,
         repeat: Number.POSITIVE_INFINITY,
@@ -47,289 +59,167 @@ const ZensorialHeader = () => {
     },
   }
 
-  // Steam effect animation
-  const steamVariants = {
-    animate: {
-      y: [0, -60],
-      x: [-5, 5, -5],
-      opacity: [0, 0.6, 0],
-      scale: [0.5, 1.2, 0.8],
-      transition: {
-        duration: 3,
-        repeat: Number.POSITIVE_INFINITY,
-        ease: "easeOut",
-      },
-    },
-  }
-
-  const staggeredParticles = {
-    animate: {
-      transition: {
-        staggerChildren: 0.2,
-      },
-    },
-  }
+  const originStats = [
+    { icon: Mountain, value: "1,800m", label: "Altitud Promedio", color: "from-amber-700 to-amber-800" },
+    { icon: Users, value: "200+", label: "Familias Caficultoras", color: "from-orange-700 to-red-700" },
+    { icon: Heart, value: "3ra Gen", label: "Tradición Familiar", color: "from-red-700 to-red-800" },
+  ]
 
   return (
-    <>
-      
-      <header
-        id="zensorial-header"
-        className="relative min-h-screen overflow-hidden bg-gradient-to-br from-amber-950 via-yellow-900 to-amber-900 dark:from-gray-900 dark:via-gray-800 dark:to-amber-900"
-      >
-        {/* Fondo con textura de café */}
-        <motion.div
-          className="absolute inset-0 bg-gradient-to-br from-amber-900/40 via-yellow-800/30 to-amber-800/50 dark:from-gray-800/60 dark:via-amber-900/40 dark:to-gray-900/50"
-          animate={{
-            background: [
-              "linear-gradient(45deg, rgba(120, 53, 15, 0.4), rgba(146, 64, 14, 0.3), rgba(133, 77, 14, 0.5))",
-              "linear-gradient(135deg, rgba(146, 64, 14, 0.5), rgba(120, 53, 15, 0.3), rgba(161, 98, 7, 0.4))",
-              "linear-gradient(225deg, rgba(133, 77, 14, 0.4), rgba(146, 64, 14, 0.4), rgba(120, 53, 15, 0.5))",
-            ],
-          }}
-          transition={{ duration: 10, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
-        />
-
-      {/* Efecto de vapor de café */}
+    <header
+      id="zensorial-header"
+      className="relative min-h-screen overflow-hidden bg-gradient-to-br from-amber-50 via-orange-50 to-red-50"
+    >
+      {/* Coffee landscape background */}
       <motion.div
-        className="absolute inset-0 bg-gradient-to-t from-transparent via-stone-100/5 to-stone-50/10 dark:via-gray-100/3 dark:to-gray-50/5"
-        animate={{
-          opacity: [0.3, 0.6, 0.3],
-          scale: [1, 1.02, 1],
-        }}
-        transition={{ duration: 4, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
-      />
-
-      {/* Interactive mouse-following gradient - Efecto crema */}
-      <motion.div
-        className="absolute inset-0 opacity-25"
+        className="absolute inset-0"
         style={{
-          background: `radial-gradient(circle at ${mousePosition.x}% ${mousePosition.y}%, rgba(245, 245, 220, 0.15) 0%, transparent 50%)`,
+          background: `radial-gradient(circle at ${mousePosition.x}% ${mousePosition.y}%, rgba(180, 83, 9, 0.1) 0%, transparent 50%)`,
         }}
       />
 
-      {/* Partículas temáticas de café */}
-      <motion.div className="absolute inset-0 pointer-events-none" variants={staggeredParticles} animate="animate">
-        {/* Granos de café flotantes */}
+      {/* Mountain silhouettes */}
+      <motion.div
+        className="absolute bottom-0 left-0 right-0 h-64 opacity-20"
+        style={{ y: springY3 }}
+        variants={mountainVariants}
+        animate="animate"
+      >
+        <svg viewBox="0 0 1200 300" className="w-full h-full">
+          <path
+            d="M0,300 L0,200 L200,100 L400,150 L600,80 L800,120 L1000,60 L1200,100 L1200,300 Z"
+            fill="url(#mountainGradient)"
+          />
+          <defs>
+            <linearGradient id="mountainGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stopColor="rgb(180, 83, 9)" stopOpacity="0.3" />
+              <stop offset="100%" stopColor="rgb(180, 83, 9)" stopOpacity="0.1" />
+            </linearGradient>
+          </defs>
+        </svg>
+      </motion.div>
+
+      {/* Coffee plants floating elements */}
+      <motion.div className="absolute inset-0 pointer-events-none">
         {[...Array(8)].map((_, i) => (
           <motion.div
-            key={`bean-${i}`}
+            key={`plant-${i}`}
             className="absolute"
             style={{
               left: `${15 + i * 10}%`,
-              top: `${25 + i * 8}%`,
+              top: `${20 + (i % 3) * 20}%`,
             }}
-            variants={coffeeBeanVariants}
+            variants={coffeeGrowthVariants}
+            animate="animate"
             transition={{
-              delay: i * 0.3,
-              duration: 6 + Math.random() * 3,
+              delay: i * 0.5,
+              duration: 5 + Math.random() * 3,
               repeat: Number.POSITIVE_INFINITY,
-              ease: "easeInOut",
             }}
           >
-            <div className="w-3 h-4 bg-amber-800 dark:bg-amber-700 rounded-full relative">
-              <div className="absolute inset-0 bg-gradient-to-br from-amber-700 to-amber-900 dark:from-amber-600 dark:to-amber-800 rounded-full" />
-              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-0.5 h-2 bg-amber-900 dark:bg-amber-800 rounded-full" />
-            </div>
+            <Leaf className="w-4 h-4 text-amber-700/40" />
           </motion.div>
         ))}
+      </motion.div>
 
-        {/* Vapor de café */}
+      {/* Floating coffee cherries */}
+      <motion.div className="absolute inset-0 pointer-events-none">
         {[...Array(6)].map((_, i) => (
           <motion.div
-            key={`steam-${i}`}
+            key={`cherry-${i}`}
             className="absolute"
             style={{
               left: `${20 + i * 15}%`,
-              top: `${60 + Math.sin(i) * 10}%`,
-            }}
-            variants={steamVariants}
-            transition={{
-              delay: i * 0.4,
-              duration: 2.5 + Math.random() * 1.5,
-              repeat: Number.POSITIVE_INFINITY,
-              ease: "easeOut",
-            }}
-          >
-            <Droplets className="w-2 h-2 text-stone-200/40 dark:text-gray-300/30" />
-          </motion.div>
-        ))}
-
-        {/* Elementos decorativos de café */}
-        {[...Array(6)].map((_, i) => (
-          <motion.div
-            key={`decor-${i}`}
-            className="absolute"
-            style={{
-              left: `${10 + i * 12}%`,
-              top: `${15 + i * 12}%`,
+              top: `${30 + Math.sin(i) * 15}%`,
             }}
             animate={{
-              y: [-10, -25, -10],
+              y: [-15, -35, -15],
+              x: [-8, 12, -8],
               rotate: [0, 180, 360],
-              opacity: [0.3, 0.7, 0.3],
             }}
             transition={{
-              delay: i * 0.5,
+              delay: i * 0.3,
               duration: 4 + Math.random() * 2,
               repeat: Number.POSITIVE_INFINITY,
               ease: "easeInOut",
             }}
           >
-            {i % 3 === 0 && <Coffee className="w-3 h-3 text-amber-600/50 dark:text-amber-500/40" />}
-            {i % 3 === 1 && <Sparkles className="w-2 h-2 text-yellow-600/40 dark:text-yellow-500/30" />}
-            {i % 3 === 2 && <Star className="w-2.5 h-2.5 text-amber-500/45 dark:text-amber-400/35" />}
+            <div className="w-3 h-3 bg-red-600/40 rounded-full shadow-sm" />
           </motion.div>
         ))}
       </motion.div>
 
-      {/* Main content container */}
+      {/* Main content */}
       <motion.div
-        className="relative z-10 flex flex-col items-center justify-center min-h-screen px-4 text-center pt-16"
-        style={{ y: springY1, opacity: springOpacity }}
+        className="relative z-10 flex flex-col items-center justify-center min-h-screen px-4 text-center pt-20"
+        style={{ y: springY1, opacity: springOpacity, scale: springScale }}
       >
-        {/* Subtitle con tema de café */}
+        {/* Origin badge */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.3 }}
-          className="mb-6"
+          initial={{ opacity: 0, y: 30, scale: 0.8 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
+          className="mb-8"
         >
-          <span className="inline-flex items-center gap-2 px-4 py-2 bg-amber-900/20 dark:bg-gray-800/40 backdrop-blur-sm rounded-full text-stone-100 dark:text-gray-200 text-sm font-medium border border-amber-700/30 dark:border-gray-600/30">
-            <Coffee className="w-4 h-4" />
-            Experiencia Premium
-            <Coffee className="w-4 h-4" />
-          </span>
+          <div className="inline-flex items-center gap-3 px-6 py-3 bg-white/80 backdrop-blur-md rounded-full border border-amber-200/50 shadow-xl">
+            <Mountain className="w-5 h-5 text-amber-700" />
+            <span className="text-amber-900 font-medium">Desde las Montañas de Colombia</span>
+            <div className="w-2 h-2 bg-red-600 rounded-full animate-pulse" />
+          </div>
         </motion.div>
 
-        {/* Main title con colores de café */}
-        <motion.h1
-          className="text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-stone-100 dark:text-gray-100 mb-8 leading-tight"
-          initial={{ opacity: 0, scale: 0.8, rotateX: -15 }}
-          animate={{ opacity: 1, scale: 1, rotateX: 0 }}
-          transition={{
-            duration: 1.5,
-            ease: [0.25, 0.46, 0.45, 0.94],
-            delay: 0.5,
-          }}
+        {/* Main headline with coffee story */}
+        <motion.div
+          className="mb-8"
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.2, delay: 0.4, ease: "easeOut" }}
         >
-          <motion.span
-            className="block"
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 1, delay: 0.8 }}
-          >
-            Vive la experiencia
-          </motion.span>
-
-          {/* Palabra "Zensorial" con efectos sutiles */}
-          <motion.div
-            className="block relative"
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 1, delay: 1.1 }}
-          >
-            {/* Efecto de brillo muy sutil */}
-            <motion.div
-              className="absolute inset-0 bg-gradient-to-r from-amber-200/20 via-yellow-100/15 to-stone-200/20 dark:from-amber-300/15 dark:via-yellow-200/10 dark:to-gray-200/15 blur-lg"
-              animate={{
-                opacity: [0.1, 0.2, 0.1],
-              }}
-              transition={{
-                duration: 4,
-                repeat: Number.POSITIVE_INFINITY,
-                ease: "easeInOut",
-              }}
-            />
-
-            {/* Texto simple con gradiente sutil */}
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-gray-900 mb-6 leading-tight">
             <motion.span
-              className="relative z-10 bg-gradient-to-r from-stone-100 via-amber-100 to-yellow-200 dark:from-gray-100 dark:via-amber-200 dark:to-yellow-300 bg-clip-text text-transparent font-extrabold"
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{
-                duration: 1.2,
-                delay: 1.3,
-                ease: "easeOut",
-              }}
-              whileHover={{
-                scale: 1.02,
-                transition: { duration: 0.2 },
-              }}
+              className="block bg-gradient-to-r from-amber-800 via-orange-700 to-red-700 bg-clip-text text-transparent"
+              initial={{ opacity: 0, x: -100 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 1, delay: 0.6 }}
             >
-              Zensorial
+              Del Corazón
             </motion.span>
-          </motion.div>
-        </motion.h1>
-
-        {/* Taza de café animada con vapor */}
-        <motion.div
-          className="relative"
-          style={{ y: springY2 }}
-          initial={{ opacity: 0, scale: 0 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1, delay: 1.4, type: "spring", bounce: 0.4 }}
-        >
-          {/* Vapor saliendo de la taza */}
-          <motion.div className="absolute -top-8 left-1/2 transform -translate-x-1/2">
-            {[...Array(3)].map((_, i) => (
-              <motion.div
-                key={i}
-                className="absolute"
-                style={{ left: `${-10 + i * 10}px` }}
-                animate={{
-                  y: [0, -30],
-                  opacity: [0, 0.7, 0],
-                  scale: [0.5, 1, 0.8],
-                }}
-                transition={{
-                  duration: 2,
-                  repeat: Number.POSITIVE_INFINITY,
-                  delay: i * 0.3,
-                  ease: "easeOut",
-                }}
-              >
-                <div className="w-1 h-2 bg-stone-200/50 dark:bg-gray-300/40 rounded-full" />
-              </motion.div>
-            ))}
-          </motion.div>
-
-          <motion.div
-            className="relative z-10"
-            animate={{
-              y: [-8, 8, -8],
-              rotate: [-2, 2, -2],
-            }}
-            transition={{
-              duration: 4,
-              repeat: Number.POSITIVE_INFINITY,
-              ease: "easeInOut",
-            }}
-          >
-            <Coffee className="w-16 h-16 md:w-20 md:h-20 text-amber-300 dark:text-amber-400" />
-          </motion.div>
-
-          {/* Resplandor cálido de café */}
-          <motion.div
-            className="absolute inset-0 bg-amber-600/30 dark:bg-amber-500/20 rounded-full blur-xl"
-            animate={{
-              scale: [1, 1.2, 1],
-              opacity: [0.3, 0.6, 0.3],
-            }}
-            transition={{
-              duration: 3,
-              repeat: Number.POSITIVE_INFINITY,
-              ease: "easeInOut",
-            }}
-          />
+            <motion.span
+              className="block bg-gradient-to-r from-red-700 via-orange-600 to-amber-700 bg-clip-text text-transparent font-extrabold"
+              initial={{ opacity: 0, x: 100 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 1, delay: 0.8 }}
+            >
+              de Colombia
+            </motion.span>
+            <motion.span
+              className="block text-amber-900"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1, delay: 1 }}
+            >
+              a tu Mesa
+            </motion.span>
+          </h1>
         </motion.div>
 
-        {/* Call to action con colores café */}
-        <motion.div
+        {/* Emotional subtitle */}
+        <motion.p
+          className="text-xl md:text-2xl text-amber-800 max-w-4xl mx-auto mb-12 leading-relaxed"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 1.8 }}
-          className="mt-12"
+          transition={{ duration: 1, delay: 1.2 }}
+        >
+          Cada taza cuenta la historia de familias caficultoras que han perfeccionado su arte durante generaciones.
+          Conectamos tradición, pasión y excelencia en una experiencia única que honra nuestras raíces.
+        </motion.p>
+
+        {/* CTA Buttons with coffee theme */}
+        <motion.div
+          className="flex flex-col sm:flex-row gap-6 mb-16"
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 1.4 }}
         >
           <motion.button
             onClick={() => {
@@ -337,29 +227,89 @@ const ZensorialHeader = () => {
                 behavior: "smooth",
               })
             }}
-            className="group relative px-8 py-4 bg-gradient-to-r from-amber-700 to-amber-600 dark:from-amber-600 dark:to-amber-500 text-stone-100 dark:text-gray-100 font-semibold rounded-full shadow-2xl overflow-hidden border border-amber-500/30 dark:border-amber-400/30"
+            className="group relative px-8 py-4 bg-gradient-to-r from-amber-700 to-orange-700 text-white font-semibold rounded-xl shadow-2xl overflow-hidden border border-amber-600/30"
             whileHover={{ scale: 1.05, y: -2 }}
             whileTap={{ scale: 0.95 }}
             transition={{ type: "spring", stiffness: 400, damping: 17 }}
           >
             <motion.div
-              className="absolute inset-0 bg-gradient-to-r from-amber-600 to-yellow-700 dark:from-amber-500 dark:to-yellow-600 opacity-0 group-hover:opacity-100"
+              className="absolute inset-0 bg-gradient-to-r from-red-700 to-red-800 opacity-0 group-hover:opacity-100"
               transition={{ duration: 0.3 }}
             />
-            <span className="relative z-10 flex items-center gap-2">
-              Descubre más
+            <span className="relative z-10 flex items-center gap-3">
+              <Coffee className="w-5 h-5" />
+              Conoce Nuestro Origen
               <motion.div animate={{ x: [0, 5, 0] }} transition={{ duration: 1.5, repeat: Number.POSITIVE_INFINITY }}>
                 →
               </motion.div>
             </span>
           </motion.button>
+
+          <motion.button
+            className="group relative px-8 py-4 bg-white/80 backdrop-blur-md text-amber-800 font-semibold rounded-xl border border-amber-200/50 hover:border-amber-300/70 transition-all duration-300"
+            whileHover={{ scale: 1.05, y: -2 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <span className="flex items-center gap-3">
+              <Heart className="w-5 h-5" />
+              Historias de Caficultores
+            </span>
+          </motion.button>
+        </motion.div>
+
+        {/* Origin Stats */}
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto"
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 1.6, staggerChildren: 0.2 }}
+        >
+          {originStats.map((stat, index) => (
+            <motion.div
+              key={index}
+              className="bg-white/70 backdrop-blur-md rounded-2xl p-6 border border-amber-200/30 shadow-xl"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6, delay: 1.8 + index * 0.2 }}
+              whileHover={{
+                scale: 1.05,
+                y: -5,
+                transition: { duration: 0.2 },
+              }}
+            >
+              <div className="flex items-center justify-center mb-4">
+                <div
+                  className={`w-12 h-12 bg-gradient-to-r ${stat.color} rounded-full flex items-center justify-center`}
+                >
+                  <stat.icon className="w-6 h-6 text-white" />
+                </div>
+              </div>
+              <div className="text-3xl font-bold text-amber-900 mb-2">{stat.value}</div>
+              <div className="text-amber-700 text-sm">{stat.label}</div>
+            </motion.div>
+          ))}
         </motion.div>
       </motion.div>
 
-      {/* Bottom gradient overlay */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-amber-950/40 dark:from-gray-900/60 to-transparent" />
+      {/* Coffee farm sunrise effect */}
+      <motion.div
+        className="absolute top-20 right-20 w-32 h-32 opacity-30"
+        animate={{
+          rotate: [0, 360],
+          scale: [1, 1.1, 1],
+        }}
+        transition={{
+          duration: 20,
+          repeat: Number.POSITIVE_INFINITY,
+          ease: "linear",
+        }}
+      >
+        <Sunrise className="w-full h-full text-amber-500" />
+      </motion.div>
+
+      {/* Bottom gradient with earth tones */}
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-amber-100/60 to-transparent" />
     </header>
-    </>
   )
 }
 
