@@ -7,6 +7,7 @@ import CoffeeOriginStory from './Pages/CofeeOriginHistory.jsx';
 import Testimonials from './Pages/Testimonials.jsx';
 import FAQ from './Pages/FAQ.jsx';
 import NewsletterSignup from './Pages/NewSletterSignUp.jsx';
+import Footer from './Pages/Footer.jsx';
 
 export default function App() {
   return (
@@ -20,7 +21,8 @@ export default function App() {
       <Testimonials />
       <FAQ />
       <NewsletterSignup />
-      {/* Aquí puedes agregar más componentes o secciones según sea necesario */}
+      <Footer />
+      {  }
     </>
   );
 }

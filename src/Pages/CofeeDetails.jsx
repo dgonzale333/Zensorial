@@ -7,6 +7,8 @@ import { ArrowLeft, MapPin, Mountain, Thermometer, Star, Coffee, Leaf, Award } f
 const CoffeeDetails = () => {
   const [selectedCoffee, setSelectedCoffee] = useState(null)
   const [expandedCard, setExpandedCard] = useState(null)
+  const [userRatings, setUserRatings] = useState({})
+  const [hoveredRating, setHoveredRating] = useState({})
 
   // Datos detallados de los cafés
   const coffeeData = [
@@ -15,7 +17,7 @@ const CoffeeDetails = () => {
       name: "Café Premium Arábica",
       origin: "Huila, Colombia",
       image: "/placeholder.svg?height=400&width=600&text=Café+Arábica",
-      price: "",
+      price: "$24.99",
       rating: 4.8,
       altitude: "1,800 - 2,100 msnm",
       process: "Lavado",
@@ -39,7 +41,7 @@ const CoffeeDetails = () => {
       name: "Espresso Intenso",
       origin: "Nariño, Colombia",
       image: "/placeholder.svg?height=400&width=600&text=Espresso+Intenso",
-      price: "",
+      price: "$28.99",
       rating: 4.9,
       altitude: "2,000 - 2,300 msnm",
       process: "Natural",
@@ -63,7 +65,7 @@ const CoffeeDetails = () => {
       name: "Café de Origen Único",
       origin: "Quindío, Colombia",
       image: "/placeholder.svg?height=400&width=600&text=Origen+Único",
-      price: "",
+      price: "$32.99",
       rating: 4.7,
       altitude: "1,500 - 1,800 msnm",
       process: "Honey",
@@ -87,7 +89,7 @@ const CoffeeDetails = () => {
       name: "Blend Signature",
       origin: "Multi-origen",
       image: "/placeholder.svg?height=400&width=600&text=Blend+Signature",
-      price: "",
+      price: "$26.99",
       rating: 4.6,
       altitude: "1,400 - 2,000 msnm",
       process: "Mixto",
@@ -107,6 +109,42 @@ const CoffeeDetails = () => {
       certifications: ["Blend Premium", "Consistencia", "Versátil"],
     },
   ]
+
+  const StarRating = ({ coffeeId, currentRating, onRate }) => {
+    const [hovered, setHovered] = useState(0)
+
+    return (
+      <div className="flex items-center gap-2">
+        <span className="text-sm font-medium text-gray-600">Tu calificación:</span>
+        <div className="flex items-center gap-1">
+          {[1, 2, 3, 4, 5].map((star) => (
+            <motion.button
+              key={star}
+              className={`w-6 h-6 transition-colors ${
+                star <= (hovered || currentRating) ? "text-yellow-400" : "text-gray-300"
+              }`}
+              onMouseEnter={() => setHovered(star)}
+              onMouseLeave={() => setHovered(0)}
+              onClick={() => onRate(coffeeId, star)}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+            >
+              <Star className="w-full h-full fill-current" />
+            </motion.button>
+          ))}
+        </div>
+        {currentRating > 0 && (
+          <span className="text-sm text-amber-600 font-medium">
+            {currentRating === 1 && "Malo"}
+            {currentRating === 2 && "Regular"}
+            {currentRating === 3 && "Bueno"}
+            {currentRating === 4 && "Muy bueno"}
+            {currentRating === 5 && "Excelente"}
+          </span>
+        )}
+      </div>
+    )
+  }
 
   const CuppingChart = ({ scores }) => (
     <div className="space-y-3">
@@ -191,6 +229,13 @@ const CoffeeDetails = () => {
     </motion.div>
   )
 
+  const handleRating = (coffeeId, rating) => {
+    setUserRatings((prev) => ({
+      ...prev,
+      [coffeeId]: rating,
+    }))
+  }
+
   const DetailModal = ({ coffee, onClose }) => (
     <motion.div
       className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4"
@@ -249,6 +294,11 @@ const CoffeeDetails = () => {
                       </span>
                     ))}
                   </div>
+                </div>
+
+                {/* Calificación del usuario */}
+                <div>
+                  <StarRating coffeeId={coffee.id} currentRating={userRatings[coffee.id] || 0} onRate={handleRating} />
                 </div>
               </div>
             </div>
