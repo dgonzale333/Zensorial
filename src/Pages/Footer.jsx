@@ -38,8 +38,8 @@ const Footer = () => {
   }
 
   const socialLinks = [
-    { name: "Instagram", icon: Instagram, href: "https://instagram.com/zensorial", color: "hover:text-pink-500" },
-    { name: "Facebook", icon: Facebook, href: "https://facebook.com/zensorial", color: "hover:text-blue-500" },
+    { name: "Instagram", icon: Instagram, href: "https://www.instagram.com/cafe_zensorial?igsh=czA1aXlvMWppMW44", color: "hover:text-pink-500" },
+    { name: "Facebook", icon: Facebook, href: "https://www.facebook.com/share/1YeaCCYzhZ/", color: "hover:text-blue-500" },
     { name: "Twitter", icon: Twitter, href: "https://twitter.com/zensorial", color: "hover:text-blue-400" },
   ]
 
@@ -90,15 +90,15 @@ const Footer = () => {
                 <div className="space-y-3">
                   <div className="flex items-center gap-3 text-gray-300">
                     <MapPin className="w-5 h-5 text-amber-500" />
-                    <span className="text-sm">Bogotá, Colombia</span>
+                    <span className="text-sm">Montenegro, Quindío</span>
                   </div>
                   <div className="flex items-center gap-3 text-gray-300">
                     <Phone className="w-5 h-5 text-amber-500" />
-                    <span className="text-sm">+57 300 123 4567</span>
+                    <span className="text-sm">+57 311 3089900</span>
                   </div>
                   <div className="flex items-center gap-3 text-gray-300">
                     <Mail className="w-5 h-5 text-amber-500" />
-                    <span className="text-sm">hola@zensorial.co</span>
+                    <span className="text-sm">cafezensorial@gmail.com</span>
                   </div>
                 </div>
               </motion.div>
@@ -180,6 +180,7 @@ const Footer = () => {
                     </li>
                   ))}
                 </ul>
+                
               </motion.div>
             </div>
           </div>
