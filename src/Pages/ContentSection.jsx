@@ -66,8 +66,8 @@ const ContentSection = () => {
         type: "video",
         images: [
           { type: "video", src: videoCafe1 },
-          { type: "image", src: imgCafe5 },
-          { type: "image", src: imgCafe6 },
+          { type: "video", src: videoCafe2 },
+          { type: "video", src: videoCafe3 },
           { type: "image", src: imgCafe7 },
         ],
         title: "Proceso de Preparación",

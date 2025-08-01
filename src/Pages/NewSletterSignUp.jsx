@@ -134,7 +134,7 @@ const NewsletterSignup = () => {
             </div>
           </div>
 
-          <p className="text-amber-200 text-xs mt-4">No spam. Puedes cancelar tu suscripción en cualquier momento.</p>
+          <p className="text-amber-200 text-xs mt-4"></p>
         </motion.div>
       </div>
     </section>

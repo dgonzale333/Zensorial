@@ -14,26 +14,26 @@ const Footer = () => {
     productos: [
       { name: "Cafés Premium", href: "#coffee-details-section" },
       { name: "Métodos de Preparación", href: "#methods-details-section" },
-      { name: "Accesorios", href: "#" },
-      { name: "Suscripciones", href: "#" },
+      { name: "", href: "#" },
+      { name: "", href: "#" },
     ],
     empresa: [
       { name: "Nosotros", href: "#about-us-section" },
-      { name: "Historia", href: "#" },
-      { name: "Misión y Visión", href: "#" },
-      { name: "Sostenibilidad", href: "#" },
+      { name: "Historia", href: "#about-us-section" },
+      { name: "Misión y Visión", href: "#about-us-section" },
+      { name: "", href: "#" },
     ],
     soporte: [
-      { name: "Preguntas Frecuentes", href: "#" },
+      { name: "Preguntas Frecuentes", href: "#faqs-section" },
       { name: "Guías de Preparación", href: "#" },
       { name: "Contacto", href: "#" },
-      { name: "Envíos", href: "#" },
+      { name: "", href: "#about-us" },
     ],
     legal: [
-      { name: "Términos y Condiciones", href: "#" },
-      { name: "Política de Privacidad", href: "#" },
-      { name: "Política de Cookies", href: "#" },
-      { name: "Devoluciones", href: "#" },
+      { name: "", href: "#" },
+      { name: "", href: "#" },
+      { name: "", href: "#" },
+      { name: "", href: "#" },
     ],
   }
 
@@ -164,24 +164,7 @@ const Footer = () => {
               </motion.div>
 
               {/* Legal */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.4 }}
-                viewport={{ once: true }}
-              >
-                <h3 className="text-lg font-semibold text-amber-100 mb-4">Legal</h3>
-                <ul className="space-y-3">
-                  {footerLinks.legal.map((link, index) => (
-                    <li key={index}>
-                      <a href={link.href} className="text-gray-300 hover:text-amber-400 transition-colors text-sm">
-                        {link.name}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-                
-              </motion.div>
+              
             </div>
           </div>
         </div>

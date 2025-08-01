@@ -268,20 +268,52 @@ const Navbar = () => {
             >
               <div className="px-4 py-6 space-y-2">
                 {navItems.map((item, index) => (
-                  <motion.button
-                    key={item.id}
-                    onClick={() => handleNavClick(item.href, item.id)}
-                    className={`block w-full text-left px-4 py-4 rounded-xl font-medium transition-all ${
-                      activeSection === item.id ? "bg-amber-100 text-amber-800" : "text-amber-700 hover:bg-amber-50"
-                    }`}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.3, delay: index * 0.1 }}
-                    whileHover={{ x: 5 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    {item.label}
-                  </motion.button>
+                  <div key={item.id}>
+                    <motion.button
+                      onClick={() => {
+                        if (item.submenu) {
+                          setShowSubmenu(showSubmenu === item.id ? null : item.id)
+                        } else {
+                          handleNavClick(item.href, item.id)
+                        }
+                      }}
+                      className={`block w-full text-left px-4 py-4 rounded-xl font-medium transition-all ${
+                        activeSection === item.id ? "bg-amber-100 text-amber-800" : "text-amber-700 hover:bg-amber-50"
+                      } flex items-center justify-between`}
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.3, delay: index * 0.1 }}
+                      whileHover={{ x: 5 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      <span>{item.label}</span>
+                      {item.submenu && (
+                        <ChevronDown
+                          className={`w-4 h-4 ml-2 transition-transform duration-200 ${
+                            showSubmenu === item.id ? "rotate-180" : ""
+                          }`}
+                        />
+                      )}
+                    </motion.button>
+                    {/* Submenu mobile */}
+                    {item.submenu && showSubmenu === item.id && (
+                      <div className="pl-4">
+                        {item.submenu.map((subItem, subIndex) => (
+                          <motion.button
+                            key={subIndex}
+                            onClick={() => handleNavClick(subItem.href, item.id)}
+                            className="block w-full text-left px-4 py-3 text-amber-700 hover:bg-amber-50 hover:text-amber-800 rounded-lg transition-colors"
+                            initial={{ opacity: 0, x: -10 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.2, delay: subIndex * 0.05 }}
+                            whileHover={{ x: 5 }}
+                          >
+                            {subItem.label}
+                          </motion.button>
+                        ))}
+                      </div>
+                    )}
+                  </div>
                 ))}
               </div>
             </motion.div>

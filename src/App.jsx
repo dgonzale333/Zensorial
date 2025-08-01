@@ -4,7 +4,6 @@ import CoffeeDetails from './Pages/CofeeDetails.jsx';
 import MethodsDetails from './Pages/MethodsDetails.jsx';
 import AboutUs from './Pages/AboutUs.jsx';
 import FAQ from './Pages/FAQ.jsx';
-import NewsletterSignup from './Pages/NewSletterSignUp.jsx';
 import Footer from './Pages/Footer.jsx';
 
 export default function App() {
@@ -16,7 +15,7 @@ export default function App() {
       <MethodsDetails />
       <AboutUs />
       <FAQ />
-      <NewsletterSignup />
+      
       <Footer />
       {  }
     </>

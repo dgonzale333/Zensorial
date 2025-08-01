@@ -33,7 +33,6 @@ const AboutUs = () => {
     historia: {
       title: "Nuestra Historia",
       content: [
-        "Zensorial nació en 2018 de la pasión de tres amigos colombianos por el café de especialidad. Todo comenzó en una pequeña finca familiar en Huila, donde descubrimos que cada grano de café cuenta una historia única.",
         "Inspirados por la riqueza de los sabores y aromas que la tierra colombiana puede ofrecer, decidimos crear una experiencia que fuera más allá de una simple taza de café. Queríamos que cada sorbo fuera un viaje sensorial que conectara a las personas con el origen, la tradición y la pasión que hay detrás de cada grano.",
         "Desde entonces, hemos trabajado incansablemente para establecer relaciones directas con productores locales, garantizando no solo la más alta calidad, sino también un comercio justo que beneficie a toda la cadena de valor del café colombiano.",
       ],
@@ -41,17 +40,13 @@ const AboutUs = () => {
     mision: {
       title: "Nuestra Misión",
       content: [
-        "Transformar cada momento de consumo de café en una experiencia sensorial única y memorable, conectando a nuestros clientes con la riqueza cultural y natural de Colombia a través de granos de café premium de origen único.",
-        "Nos comprometemos a mantener los más altos estándares de calidad en cada etapa del proceso, desde la selección cuidadosa de los granos hasta el tostado artesanal, garantizando que cada taza refleje la pasión y dedicación que ponemos en nuestro trabajo.",
-        "Buscamos educar y acompañar a nuestros clientes en su viaje de descubrimiento del café, proporcionando no solo productos excepcionales, sino también el conocimiento y las herramientas necesarias para disfrutar al máximo de esta experiencia.",
+        "Transmitir la pasión por el café de origen a través de métodos de preparación artesanales y especializados, ofreciendo una expreriencia sensorial que realte los sabores auténticos del Quindío, acompañada de repostería artesanal y un servicio que conecta con la cultura y el bienestar de nuestros clientes.",
       ],
     },
     vision: {
       title: "Nuestra Visión",
       content: [
-        "Ser reconocidos como la marca líder en café de especialidad en Colombia y expandir nuestra presencia a nivel internacional, llevando la excelencia del café colombiano a todos los rincones del mundo.",
-        "Convertirnos en el puente que conecte a los amantes del café con los productores locales, creando un ecosistema sostenible que beneficie a todas las partes involucradas y preserve las tradiciones cafeteras de nuestro país.",
-        "Innovar constantemente en métodos de preparación, experiencias sensoriales y tecnología, manteniendo siempre nuestro compromiso con la calidad, la sostenibilidad y el respeto por el medio ambiente.",
+        "Ser reconocidos en los próximos 2 años como un referente de turismo gastronómico y experiencia sensorial de café a nivel local, combinando métodos artesanales de alta calidad con innovación sostenibilidad y compromiso con la calidad; La identidad local y el bienestar de nuestros clientes.",
       ],
     },
     valores: {
