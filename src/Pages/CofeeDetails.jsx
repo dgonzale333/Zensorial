@@ -3,6 +3,11 @@
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { ArrowLeft, MapPin, Mountain, Thermometer, Star, Coffee, Leaf, Award } from "lucide-react"
+import imgCafeb1 from "../assets/Img/cafeb1.jpeg"
+import imgCafeb2 from "../assets/Img/cafeb2.jpeg"
+import imgCafeb3 from "../assets/Img/cafeb3.jpeg"
+import imgCafeb4 from "../assets/Img/cafeb4.jpeg"
+import imgCafeb5 from "../assets/Img/cafeb5.jpeg"
 
 const CoffeeDetails = () => {
   const [selectedCoffee, setSelectedCoffee] = useState(null)
@@ -14,15 +19,15 @@ const CoffeeDetails = () => {
   const coffeeData = [
     {
       id: 1,
-      name: "Café Premium Arábica",
-      origin: "Huila, Colombia",
-      image: "/placeholder.svg?height=400&width=600&text=Café+Arábica",
+      name: "Emmanuel Café De Origen",
+      origin: "Circasia, Quindío",
+      image: imgCafeb1,
       price: "",
       rating: 4.8,
       altitude: "1,800 - 2,100 msnm",
       process: "Lavado",
-      variety: "Caturra, Castillo",
-      roastLevel: "Medio",
+      variety: " Castillo",
+      roastLevel: "Suave",
       cupping: {
         aroma: 8.5,
         flavor: 9.0,
@@ -30,9 +35,9 @@ const CoffeeDetails = () => {
         body: 8.5,
         balance: 9.0,
       },
-      tastingNotes: ["Chocolate negro", "Caramelo", "Frutas cítricas", "Nueces"],
-      description:
-        "Un café excepcional cultivado en las montañas de Huila, Colombia. Este arábica premium ofrece un perfil de sabor complejo con notas dulces y una acidez brillante que lo convierte en la elección perfecta para cualquier momento del día.",
+      tastingNotes: ["Chocolate negro", "Herbal Panela" , "Frutos Secos"],
+description:
+  "Un café de origen único cultivado en las montañas de Circasia, Quindío. Proveniente de la finca La Frontera, en la vereda La Pradera, este café variedad Castillo destaca por su aroma herbal con notas de panela y un perfil de sabor que evoca el chocolate y los frutos secos. Con una acidez delicada y cuerpo suave, es ideal para quienes buscan una experiencia sensorial refinada en cada taza. Perfecto para disfrutarlo en cualquier momento del día.",
       brewingTips: ["Temperatura: 92-96°C", "Tiempo: 4-6 minutos", "Proporción: 1:15-1:17", "Molienda: Media-fina"],
       certifications: ["Orgánico", "Comercio Justo", "Rainforest Alliance"],
     },
@@ -40,7 +45,7 @@ const CoffeeDetails = () => {
       id: 2,
       name: "Espresso Intenso",
       origin: "Nariño, Colombia",
-      image: "/placeholder.svg?height=400&width=600&text=Espresso+Intenso",
+      image: imgCafeb2,
       price: "",
       rating: 4.9,
       altitude: "2,000 - 2,300 msnm",
@@ -62,14 +67,14 @@ const CoffeeDetails = () => {
     },
     {
       id: 3,
-      name: "Café de Origen Único",
-      origin: "Quindío, Colombia",
-      image: "/placeholder.svg?height=400&width=600&text=Origen+Único",
+      name: "Café El Danubio",
+      origin: "Quimbaya, Quindío",
+      image: imgCafeb3,
       price: "",
       rating: 4.7,
-      altitude: "1,500 - 1,800 msnm",
-      process: "Honey",
-      variety: "Pink Bourbon",
+      altitude: "1,310 - 1,500 msnm",
+      process: "Lavado",
+      variety: "Castillo",
       roastLevel: "Medio claro",
       cupping: {
         aroma: 8.8,
@@ -78,22 +83,22 @@ const CoffeeDetails = () => {
         body: 8.0,
         balance: 8.8,
       },
-      tastingNotes: ["Flores", "Miel", "Frutas tropicales", "Té negro"],
+      tastingNotes: ["Suavidad", "Aroma", "Citrico", "Frutal"],
       description:
-        "Una variedad excepcional de Pink Bourbon procesada con método honey. Este café de origen único del Quindío ofrece una experiencia floral y frutal única, perfecta para los amantes de cafés especiales.",
+        "Café El Danubio, una joya cultivada en Quimbaya, Quindío a 1.310 m.s.n.m. Este café de variedad Castillo, cuidadosamente procesado por el productor Diego Rodríguez, se distingue por su suavidad, su aroma envolvente y una acidez cítrica y frutal que despierta los sentidos. Con una tostión media, libre de pesticidas y procesos como lavado, honey rojo y honey amarillo, ofrece una experiencia limpia y vibrante en cada taza. Ideal para quienes valoran la pureza, la trazabilidad y el sabor auténtico del café de origen colombiano.",
       brewingTips: ["Temperatura: 90-94°C", "Tiempo: 3-4 minutos", "Proporción: 1:16", "Molienda: Media"],
       certifications: ["Especialidad", "Edición Limitada", "Premiado"],
     },
     {
       id: 4,
-      name: "Blend Signature",
-      origin: "Multi-origen",
-      image: "/placeholder.svg?height=400&width=600&text=Blend+Signature",
+      name: "Café Luxe",
+      origin: "Filandia, Quindío",
+      image: imgCafeb4,
       price: "",
       rating: 4.6,
-      altitude: "1,400 - 2,000 msnm",
+      altitude: "1,550 - 1,600 msnm",
       process: "Mixto",
-      variety: "Arábica blend",
+      variety: "Catillo",
       roastLevel: "Medio",
       cupping: {
         aroma: 8.2,
@@ -102,9 +107,9 @@ const CoffeeDetails = () => {
         body: 8.8,
         balance: 9.2,
       },
-      tastingNotes: ["Caramelo", "Vainilla", "Almendras", "Cacao"],
+      tastingNotes: ["Caramelo", "Cacao"],
       description:
-        "Nuestro blend signature combina los mejores granos de diferentes regiones para crear un perfil de sabor equilibrado y consistente. Ideal para espresso y métodos de filtrado.",
+        "LUXE, un café de altura cultivado en las montañas de Filandia, Quindío.De variedad Catimore, este café se cosecha entre los 1.550 y 1.600 m.s.n.m., lo que le aporta un carácter distintivo y complejo. Sus notas de sabor a caramelo y cacao se equilibran con un cuerpo medio y una acidez moderada a baja, ideal para quienes buscan suavidad sin perder profundidad en el paladar. Con tostión media y molido en grano, LUXE es una experiencia sensorial pensada para verdaderos amantes del café colombiano de origen.",
       brewingTips: ["Temperatura: 91-95°C", "Tiempo: 4-5 minutos", "Proporción: 1:15", "Molienda: Media"],
       certifications: ["Blend Premium", "Consistencia", "Versátil"],
     },
