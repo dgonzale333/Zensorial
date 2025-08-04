@@ -41,30 +41,7 @@ description:
       brewingTips: ["Temperatura: 92-96°C", "Tiempo: 4-6 minutos", "Proporción: 1:15-1:17", "Molienda: Media-fina"],
       certifications: ["Orgánico", "Comercio Justo", "Rainforest Alliance"],
     },
-    {
-      id: 2,
-      name: "Espresso Intenso",
-      origin: "Nariño, Colombia",
-      image: imgCafeb2,
-      price: "",
-      rating: 4.9,
-      altitude: "2,000 - 2,300 msnm",
-      process: "Natural",
-      variety: "Geisha, Bourbon",
-      roastLevel: "Oscuro",
-      cupping: {
-        aroma: 9.0,
-        flavor: 9.5,
-        acidity: 7.5,
-        body: 9.5,
-        balance: 9.0,
-      },
-      tastingNotes: ["Chocolate amargo", "Frutos secos", "Especias", "Tabaco dulce"],
-      description:
-        "Nuestro espresso más intenso, cultivado en las alturas de Nariño. Con un proceso natural que realza su cuerpo y dulzura, este café ofrece una experiencia sensorial única con cada sorbo.",
-      brewingTips: ["Temperatura: 88-92°C", "Tiempo: 25-30 segundos", "Proporción: 1:2", "Molienda: Fina"],
-      certifications: ["Especialidad", "Microlote", "Trazabilidad"],
-    },
+   
     {
       id: 3,
       name: "Café El Danubio",
@@ -406,7 +383,7 @@ description:
         </motion.div>
 
         {/* Grid de cafés */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-8">
           {coffeeData.map((coffee, index) => (
             <CoffeeCard key={coffee.id} coffee={coffee} index={index} />
           ))}
