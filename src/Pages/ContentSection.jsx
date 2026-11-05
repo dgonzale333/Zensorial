@@ -39,7 +39,6 @@ import videoCafe2 from "../assets/Video/videoCafe2.mp4"
 import videoCafe3 from "../assets/Video/videoCafe3.mp4"
 
 const ContentSection = () => {
-  const [activeSection, setActiveSection] = useState("cafes")
   const [cardSlides, setCardSlides] = useState({})
   const [playingVideos, setPlayingVideos] = useState({}) // Estado para controlar reproducción de videos
   const [mutedVideos, setMutedVideos] = useState({}) // Estado para controlar el volumen de videos

@@ -12,7 +12,6 @@ import Chemex from "../assets/Img/chemex.jpg"
 
 const MethodsDetails = () => {
   const [selectedMethod, setSelectedMethod] = useState(null)
-  const [activeStep, setActiveStep] = useState(0)
 
   // Datos detallados de los métodos
   const methodsData = [

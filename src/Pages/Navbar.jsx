@@ -63,6 +63,7 @@ const Navbar = () => {
   }
 
   const handleNavClick = (href, id) => {
+    if (id) setActiveSection(id)
     if (href === "#") {
       scrollToTop()
     } else {
