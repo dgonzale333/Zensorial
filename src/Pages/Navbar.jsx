@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Menu, X, Search, ArrowUp, Coffee, ChevronDown } from "lucide-react"
+import AccountActions from "./AccountActions.jsx"
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false)
@@ -208,7 +209,9 @@ const Navbar = () => {
             </div>
 
             {/* Enhanced Actions */}
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2 sm:gap-4">
+              <AccountActions onNavigate={() => setIsOpen(false)} />
+
               {/* Search */}
               <motion.button
                 onClick={() => setShowSearch(!showSearch)}
