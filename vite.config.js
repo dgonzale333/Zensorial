@@ -27,5 +27,8 @@ export default defineConfig(({ mode }) => {
 
   return {
     plugins: [react(), tailwindcss(), localCoffeeApi()],
+    server: {
+      allowedHosts: ['sb-27q7ura8eikb.vercel.run'],
+    },
   }
 })
