@@ -10,13 +10,11 @@ const ZensorialHeader = () => {
 
   // Parallax effects inspired by coffee landscapes
   const y1 = useTransform(scrollY, [0, 500], [0, -150])
-  const y2 = useTransform(scrollY, [0, 500], [0, -300])
   const y3 = useTransform(scrollY, [0, 500], [0, -100])
   const opacity = useTransform(scrollY, [0, 300], [1, 0])
   const scale = useTransform(scrollY, [0, 300], [1, 0.8])
 
   const springY1 = useSpring(y1, { stiffness: 100, damping: 30 })
-  const springY2 = useSpring(y2, { stiffness: 80, damping: 25 })
   const springY3 = useSpring(y3, { stiffness: 120, damping: 35 })
   const springOpacity = useSpring(opacity, { stiffness: 100, damping: 30 })
   const springScale = useSpring(scale, { stiffness: 100, damping: 30 })
