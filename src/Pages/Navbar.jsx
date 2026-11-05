@@ -1,9 +1,11 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import { useLocation, useNavigate } from "react-router-dom"
 import { motion, AnimatePresence } from "framer-motion"
 import { Menu, X, Search, ArrowUp, Coffee, ChevronDown } from "lucide-react"
 import AccountActions from "./AccountActions.jsx"
+import CartButton from "../Components/CartButton.jsx"
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false)
@@ -13,6 +15,8 @@ const Navbar = () => {
   const [showSearch, setShowSearch] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const [showSubmenu, setShowSubmenu] = useState(null)
+  const navigate = useNavigate()
+  const location = useLocation()
 
   const navItems = [
     { id: "home", label: "Inicio", href: "#" },
@@ -27,6 +31,7 @@ const Navbar = () => {
       ],
     },
     { id: "cafes", label: "Productos", href: "#coffee-details-section" },
+    { id: "tienda", label: "Tienda", href: "/tienda" },
     { id: "nosotros", label: "Nosotros", href: "#about-us-section" },
     { id: "contacto", label: "Contacto", href: "#about-us-section" },
   ]
@@ -64,14 +69,29 @@ const Navbar = () => {
 
   const handleNavClick = (href, id) => {
     if (id) setActiveSection(id)
-    if (href === "#") {
-      scrollToTop()
-    } else {
+
+    if (href.startsWith("/")) {
+      navigate(href)
+    } else if (href === "#") {
+      if (location.pathname === "/") scrollToTop()
+      else navigate("/")
+    } else if (location.pathname === "/") {
       document.querySelector(href)?.scrollIntoView({ behavior: "smooth" })
+    } else {
+      navigate(`/${href}`)
     }
+
     setIsOpen(false)
     setShowSubmenu(null)
   }
+
+  useEffect(() => {
+    if (location.pathname !== "/" || !location.hash) return undefined
+    const frame = window.requestAnimationFrame(() => {
+      document.querySelector(location.hash)?.scrollIntoView({ behavior: "smooth" })
+    })
+    return () => window.cancelAnimationFrame(frame)
+  }, [location.pathname, location.hash])
 
   const navbarVariants = {
     hidden: { y: -100, opacity: 0 },
@@ -210,18 +230,22 @@ const Navbar = () => {
             </div>
 
             {/* Enhanced Actions */}
-            <div className="flex items-center gap-2 sm:gap-4">
-              <AccountActions onNavigate={() => setIsOpen(false)} />
+            <div className="flex shrink-0 items-center gap-1 sm:gap-3">
+              <CartButton onNavigate={() => setIsOpen(false)} />
+              <div className="hidden items-center gap-2 sm:flex">
+                <AccountActions onNavigate={() => setIsOpen(false)} />
 
-              {/* Search */}
-              <motion.button
-                onClick={() => setShowSearch(!showSearch)}
-                className="p-3 text-amber-700 hover:text-amber-800 hover:bg-amber-100 rounded-xl transition-all duration-300"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-              >
-                <Search className="w-5 h-5" />
-              </motion.button>
+                {/* Search */}
+                <motion.button
+                  onClick={() => setShowSearch(!showSearch)}
+                  aria-label="Buscar en el sitio"
+                  className="p-2 text-amber-700 transition-all duration-300 hover:bg-amber-100 hover:text-amber-800 sm:p-3"
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
+                >
+                  <Search className="size-5" />
+                </motion.button>
+              </div>
 
               {/* Mobile Menu Button */}
               <motion.button
@@ -319,6 +343,9 @@ const Navbar = () => {
                     )}
                   </div>
                 ))}
+                <div className="border-t border-amber-200/70 pt-4 sm:hidden">
+                  <AccountActions onNavigate={() => setIsOpen(false)} />
+                </div>
               </div>
             </motion.div>
           )}
