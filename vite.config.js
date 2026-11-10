@@ -1,32 +1,43 @@
 import process from 'node:process'
+import { resolve } from 'node:path'
+import { pathToFileURL } from 'node:url'
 import { defineConfig, loadEnv } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 
-function localCoffeeApi() {
+function localApiRoutes() {
+  const routes = [
+    ['/api/coffees', './api/coffees.js'],
+    ['/api/checkout', './api/checkout.js'],
+  ]
+
   return {
-    name: 'local-coffee-api',
+    name: 'local-api-routes',
     configureServer(server) {
-      server.middlewares.use('/api/coffees', async (request, response, next) => {
-        try {
-          const { default: handler } = await import('./api/coffees.js')
-          await handler(request, response)
-        } catch (error) {
-          next(error)
-        }
-      })
+      for (const [path, modulePath] of routes) {
+        server.middlewares.use(path, async (request, response, next) => {
+          try {
+            const handlerUrl = pathToFileURL(resolve(process.cwd(), modulePath)).href
+            const { default: handler } = await import(handlerUrl)
+            await handler(request, response)
+          } catch (error) {
+            next(error)
+          }
+        })
+      }
     },
   }
 }
 
 export default defineConfig(({ mode }) => {
   const environment = loadEnv(mode, process.cwd(), '')
-  for (const name of ['DATABASE_URL', 'NEON_AUTH_BASE_URL']) {
+  for (const name of ['DATABASE_URL', 'NEON_AUTH_BASE_URL', 'STRIPE_SECRET_KEY']) {
     if (!process.env[name] && environment[name]) process.env[name] = environment[name]
   }
 
   return {
-    plugins: [react(), tailwindcss(), localCoffeeApi()],
+    envPrefix: ['VITE_', 'NEXT_PUBLIC_'],
+    plugins: [react(), tailwindcss(), localApiRoutes()],
     server: {
       allowedHosts: ['sb-27q7ura8eikb.vercel.run'],
     },

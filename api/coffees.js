@@ -25,7 +25,7 @@ const coffeeInputSchema = z.object({
   name: z.string().trim().min(1).max(120),
   origin: z.string().trim().min(1).max(120),
   imageUrl: imageUrlSchema,
-  price: z.string().trim().max(80),
+  price: z.string().trim().max(12).refine((value) => value === "" || (/^\d+$/.test(value) && Number(value) <= 99_999_999), "El precio debe ser un monto entero en COP."),
   rating: z.coerce.number().min(0).max(5),
   altitude: z.string().trim().max(120),
   process: z.string().trim().max(80),

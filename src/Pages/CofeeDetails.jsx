@@ -1,11 +1,13 @@
 "use client"
 
 import { useState } from "react"
+import { Link } from "react-router-dom"
 import { motion, AnimatePresence } from "framer-motion"
 import { ArrowLeft, MapPin, Mountain, Thermometer, Star, Coffee, Leaf, Award } from "lucide-react"
 import useSWR from "swr"
 import { COFFEE_PUBLIC_KEY, getPublicCoffees } from "../lib/coffee-api.js"
 import { initialCoffeeProducts } from "../data/coffee-products.js"
+import { formatCopPrice } from "../lib/store-cart.js"
 
 function normalizeCoffee(coffee, index = 0) {
   return {
@@ -98,7 +100,7 @@ const CoffeeDetails = () => {
           className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
         />
         <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm rounded-full px-3 py-1">
-          <span className="text-amber-600 font-bold">{coffee.price}</span>
+          <span className="text-amber-600 font-bold">{formatCopPrice(coffee.price)}</span>
         </div>
         <div className="absolute bottom-4 left-4 flex items-center gap-1 bg-black/50 backdrop-blur-sm rounded-full px-2 py-1">
           <Star className="w-4 h-4 text-yellow-400 fill-current" />
@@ -187,7 +189,7 @@ const CoffeeDetails = () => {
 
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
-                  <span className="text-3xl font-bold text-amber-600">{coffee.price}</span>
+                  <span className="text-3xl font-bold text-amber-600">{formatCopPrice(coffee.price)}</span>
                   <div className="flex items-center gap-1">
                     <Star className="w-5 h-5 text-yellow-400 fill-current" />
                     <span className="font-medium">{coffee.rating}/5</span>
@@ -314,6 +316,9 @@ const CoffeeDetails = () => {
             Descubre nuestra selección cuidadosamente curada de cafés especiales. Cada grano cuenta una historia única
             de origen, proceso y sabor.
           </p>
+          <Link to="/tienda" className="mt-6 inline-flex items-center justify-center rounded-full bg-amber-900 px-5 py-3 text-sm font-semibold text-white transition hover:bg-amber-800">
+            Comprar cafés
+          </Link>
         </motion.div>
 
         {/* Grid de cafés */}

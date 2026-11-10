@@ -90,7 +90,7 @@ export default function CoffeeProductForm({ initialValue, isSaving, onCancel, on
         <TextField id="coffee-name" label="Nombre del café" value={form.name} onChange={updateField("name")} required maxLength={120} />
         <TextField id="coffee-origin" label="Origen" value={form.origin} onChange={updateField("origin")} required maxLength={120} />
         <TextField id="coffee-image" label="URL de imagen" value={form.imageUrl} onChange={updateField("imageUrl")} maxLength={2048} placeholder="/images/cafeb1.jpeg o https://…" />
-        <TextField id="coffee-price" label="Precio / etiqueta" value={form.price} onChange={updateField("price")} maxLength={80} placeholder="Consultar" />
+        <TextField id="coffee-price" label="Precio en COP (pesos enteros)" type="number" value={form.price} onChange={updateField("price")} min="1" max="99999999" step="1" placeholder="30000" />
         <TextField id="coffee-rating" label="Calificación (0–5)" type="number" value={form.rating} onChange={updateField("rating")} min="0" max="5" step="0.1" required />
         <TextField id="coffee-altitude" label="Altitud" value={form.altitude} onChange={updateField("altitude")} maxLength={120} />
         <TextField id="coffee-process" label="Proceso" value={form.process} onChange={updateField("process")} maxLength={80} />
